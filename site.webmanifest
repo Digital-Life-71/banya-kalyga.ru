@@ -1,0 +1,24 @@
+{
+  "name": "Волшебная живая баня",
+  "short_name": "Живая баня",
+  "description": "Русская баня на дровах, чан, купель и парение в Калуге.",
+  "lang": "ru-RU",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#153327",
+  "theme_color": "#153327",
+  "icons": [
+    {
+      "src": "/assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

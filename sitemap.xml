@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+>
+  <url>
+    <loc>https://banya-kalyga.ru/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://banya-kalyga.ru/assets/images/hero-desktop.jpg</image:loc>
+      <image:caption>Русская баня на дровах в Калуге, парная с печью и липовыми полками</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://banya-kalyga.ru/assets/images/hot-tub.jpg</image:loc>
+      <image:caption>Сибирский банный чан с теплой водой и цитрусами</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://banya-kalyga.ru/assets/images/lounge.jpg</image:loc>
+      <image:caption>Комната отдыха в Волшебной живой бане</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://banya-kalyga.ru/assets/images/courtyard.jpg</image:loc>
+      <image:caption>Закрытый двор и мангальная зона у бани в Колюпаново</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://banya-kalyga.ru/assets/images/bench.jpg</image:loc>
+      <image:caption>Широкие липовые полки в русской парной</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://banya-kalyga.ru/assets/images/master-steam.jpg</image:loc>
+      <image:caption>Индивидуальное парение с веником</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://banya-kalyga.ru/assets/images/winter-chan.jpg</image:loc>
+      <image:caption>Банный чан на улице зимой</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://banya-kalyga.ru/assets/images/night-tub.jpg</image:loc>
+      <image:caption>Вечерний банный чан с подсветкой</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://banya-kalyga.ru/assets/images/stove-fire.jpg</image:loc>
+      <image:caption>Живой огонь в печи русской бани</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://banya-kalyga.ru/assets/images/black-bath.jpg</image:loc>
+      <image:caption>Баня по-черному с деревянными полками</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://banya-kalyga.ru/assets/images/terrace.jpg</image:loc>
+      <image:caption>Терраса для отдыха после парной</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://banya-kalyga.ru/assets/images/cold-tub.jpg</image:loc>
+      <image:caption>Холодная купель после русской парной</image:caption>
+    </image:image>
+  </url>
+</urlset>
