@@ -1472,8 +1472,8 @@ section[id] {
   display: grid;
   place-items: center;
   width: 44px;
-  height: 138px;
-  padding: 14px 0;
+  height: 174px;
+  padding: 0;
   background:
     linear-gradient(180deg, rgba(21, 51, 39, 0.98), rgba(70, 36, 27, 0.98));
   border: 1px solid rgba(244, 193, 110, 0.24);
@@ -1493,8 +1493,8 @@ section[id] {
   transform: translate(50%, 0) scale(1);
 }
 
-.audio-player__mini-volume-popover input {
-  width: 96px;
+.audio-player .audio-player__mini-volume-popover input[type="range"] {
+  width: 142px;
   transform: rotate(-90deg);
   transform-origin: center;
 }
@@ -2304,11 +2304,11 @@ section[id] {
 
   .audio-player__mini-volume-popover {
     bottom: calc(100% + 58px);
-    height: 126px;
+    height: 166px;
   }
 
-  .audio-player__mini-volume-popover input {
-    width: 86px;
+  .audio-player .audio-player__mini-volume-popover input[type="range"] {
+    width: 136px;
   }
 
   .audio-player__mini-volume {
