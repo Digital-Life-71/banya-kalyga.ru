@@ -249,13 +249,22 @@
             индивидуальное парение с мастером.
           </p>
 
-          <button class="hero-music" type="button" data-audio-hero>
-            <span class="hero-music__disc" aria-hidden="true">
-              <i data-lucide="music-2"></i>
+          <button class="hero-music" type="button" aria-label="Включить музыку 60 на 60" data-audio-hero>
+            <span class="hero-music__ring" aria-hidden="true">
+              <svg viewBox="0 0 160 160">
+                <defs>
+                  <path id="hero-music-circle" d="M80 80 m -58 0 a 58 58 0 1 1 116 0 a 58 58 0 1 1 -116 0" />
+                </defs>
+                <text>
+                  <textPath href="#hero-music-circle">
+                    ВКЛЮЧИТЬ МУЗЫКУ - 60 НА 60 - ВКЛЮЧИТЬ МУЗЫКУ -
+                  </textPath>
+                </text>
+              </svg>
             </span>
-            <span class="hero-music__copy">
-              <strong>Включите атмосферу бани</strong>
-              <small>Аудио приглашение и песни для настроения</small>
+            <span class="hero-music__center" aria-hidden="true">
+              <i data-lucide="music-2"></i>
+              <strong>60 на 60</strong>
             </span>
           </button>
 
