@@ -1151,8 +1151,10 @@ section[id] {
 
 .faq-list {
   display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
   gap: 10px;
-  max-width: 860px;
+  max-width: none;
 }
 
 .faq-list details {
@@ -3255,6 +3257,10 @@ section[id] {
 
   .review-cards strong {
     font-size: 2.5rem;
+  }
+
+  .faq-list {
+    grid-template-columns: 1fr;
   }
 
   .faq-list summary {
