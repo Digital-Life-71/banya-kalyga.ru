@@ -362,6 +362,7 @@ function setupAudioPlayer() {
     audio.volume = nextVolume;
     if (volumeInput) volumeInput.value = String(nextVolume);
     if (miniVolumeInput) miniVolumeInput.value = String(nextVolume);
+    miniVolumePopover?.style.setProperty("--mini-volume-percent", `${Math.round(nextVolume * 100)}%`);
   }
 
   setVolume(volumeInput?.value || miniVolumeInput?.value || 0.75);
