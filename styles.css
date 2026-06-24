@@ -1573,14 +1573,11 @@ section[id] {
   bottom: 0;
   display: grid;
   grid-template-columns: minmax(256px, 0.95fr) minmax(256px, 1.05fr);
-  grid-template-rows: 38px minmax(0, 1fr);
-  grid-template-areas:
-    "head head"
-    "main list";
+  grid-template-areas: "main list";
   align-items: stretch;
   gap: 12px;
   width: min(646px, calc(100vw - 44px));
-  height: min(314px, calc(100svh - 44px));
+  height: min(257px, calc(100svh - 44px));
   padding: 12px;
   overflow: hidden;
   color: var(--white);
@@ -1618,15 +1615,27 @@ section[id] {
 }
 
 .audio-player__head {
-  grid-area: head;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 4;
   display: grid;
-  grid-template-columns: auto;
-  align-items: center;
-  justify-content: end;
-  gap: 10px;
-  min-width: 0;
-  align-self: start;
-  padding: 0 2px;
+}
+
+.audio-player__head .audio-player__icon {
+  width: 34px;
+  height: 34px;
+  color: var(--paper);
+  background: rgba(12, 10, 8, 0.26);
+  border: 1px solid rgba(244, 193, 110, 0.26);
+  box-shadow: 0 10px 24px rgba(12, 10, 8, 0.24);
+  backdrop-filter: blur(10px);
+}
+
+.audio-player__head .audio-player__icon:hover {
+  color: var(--leaf-2);
+  background: var(--gold);
+  transform: translateY(-1px) scale(1.02);
 }
 
 .audio-player__track {
@@ -1859,6 +1868,8 @@ section[id] {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
+  min-height: 34px;
+  padding-right: 42px;
 }
 
 .audio-player__list-head span {
@@ -2582,14 +2593,17 @@ section[id] {
     width: 100%;
     height: auto;
     grid-template-columns: 1fr;
-    grid-template-rows: 36px auto auto;
     grid-template-areas:
-      "head"
       "main"
       "list";
     max-height: calc(100svh - 28px);
-    padding: 10px;
+    padding: 48px 10px 10px;
     overflow-y: auto;
+  }
+
+  .audio-player__head {
+    top: 10px;
+    right: 10px;
   }
 
   .audio-player__main,
@@ -2627,6 +2641,11 @@ section[id] {
 
   .audio-player__playlist {
     max-height: 186px;
+  }
+
+  .audio-player__list-head {
+    min-height: auto;
+    padding-right: 0;
   }
 
   .audio-player__mini {
