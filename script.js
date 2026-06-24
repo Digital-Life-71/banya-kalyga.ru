@@ -11,10 +11,6 @@ const lightboxPrev = document.querySelector("[data-lightbox-prev]");
 const lightboxNext = document.querySelector("[data-lightbox-next]");
 const lightboxStage = document.querySelector("[data-lightbox-stage]");
 const lightboxThumbs = document.querySelector("[data-lightbox-thumbs]");
-const videoOpen = document.querySelector("[data-video-open]");
-const videoModal = document.querySelector("[data-video-modal]");
-const videoClose = document.querySelector("[data-video-close]");
-const videoFrame = document.querySelector("[data-video-frame]");
 const galleryItems = gallery ? [...gallery.querySelectorAll("[data-full]")] : [];
 const galleryPhotos = galleryItems.map((item) => {
   const image = item.querySelector("img");
@@ -38,6 +34,40 @@ function refreshIcons() {
 function updateHeader() {
   if (!header) return;
   header.classList.toggle("is-scrolled", window.scrollY > 18);
+}
+
+function loadYandexMetrika() {
+  const counterId = 110128332;
+  const scriptUrl = `https://mc.yandex.ru/metrika/tag.js?id=${counterId}`;
+
+  if (window.__yandexMetrikaLoaded) return;
+  window.__yandexMetrikaLoaded = true;
+
+  (function(m, e, t, r, i, k, a) {
+    m[i] = m[i] || function() {
+      (m[i].a = m[i].a || []).push(arguments);
+    };
+    m[i].l = 1 * new Date();
+    for (let j = 0; j < document.scripts.length; j += 1) {
+      if (document.scripts[j].src === r) return;
+    }
+    k = e.createElement(t);
+    a = e.getElementsByTagName(t)[0];
+    k.async = 1;
+    k.src = r;
+    a.parentNode.insertBefore(k, a);
+  })(window, document, "script", scriptUrl, "ym");
+
+  window.ym(counterId, "init", {
+    ssr: true,
+    webvisor: true,
+    clickmap: true,
+    ecommerce: "dataLayer",
+    referrer: document.referrer,
+    url: location.href,
+    accurateTrackBounce: true,
+    trackLinks: true,
+  });
 }
 
 function closeMenu() {
@@ -113,22 +143,6 @@ function closeLightbox() {
   lightboxImage.src = "";
 }
 
-function openVideoModal() {
-  if (!videoModal || !videoFrame) return;
-  videoFrame.src = videoFrame.dataset.videoSrc || "";
-  videoModal.classList.add("is-open");
-  videoModal.setAttribute("aria-hidden", "false");
-  document.body.classList.add("video-open");
-}
-
-function closeVideoModal() {
-  if (!videoModal || !videoFrame) return;
-  videoModal.classList.remove("is-open");
-  videoModal.setAttribute("aria-hidden", "true");
-  document.body.classList.remove("video-open");
-  videoFrame.src = "";
-}
-
 function showPrevLightboxPhoto() {
   showLightboxPhoto(currentLightboxIndex - 1);
 }
@@ -186,20 +200,6 @@ if (lightbox) {
   });
 }
 
-if (videoOpen) {
-  videoOpen.addEventListener("click", openVideoModal);
-}
-
-if (videoModal) {
-  videoModal.addEventListener("click", (event) => {
-    if (event.target === videoModal) closeVideoModal();
-  });
-}
-
-if (videoClose) {
-  videoClose.addEventListener("click", closeVideoModal);
-}
-
 if (lightboxClose) {
   lightboxClose.addEventListener("click", closeLightbox);
 }
@@ -248,7 +248,6 @@ document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") {
     closeMenu();
     closeLightbox();
-    closeVideoModal();
   }
   if (!lightbox?.classList.contains("is-open")) return;
   if (event.key === "ArrowLeft") showPrevLightboxPhoto();
@@ -532,6 +531,7 @@ function setupRevealAnimations() {
     ".price-card",
     ".booking-note",
     ".steps article",
+    ".video-card",
     ".gallery-item",
     ".reviews-layout > div",
     ".review-cards article",
@@ -575,6 +575,7 @@ function setupCookieConsent() {
 
   const consentKey = "cookie_consent";
   const savedConsent = getStoredConsent() || getCookie(consentKey);
+  const resetButtons = document.querySelectorAll("[data-cookie-reset]");
 
   function getStoredConsent() {
     try {
@@ -599,19 +600,36 @@ function setupCookieConsent() {
       // Cookie still stores the choice when localStorage is unavailable.
     }
     document.cookie = `${consentKey}=${value}; path=/; max-age=${maxAge}; SameSite=Lax`;
+    if (value === "accepted") loadYandexMetrika();
     banner.classList.remove("is-visible");
     banner.setAttribute("hidden", "");
   }
 
   if (savedConsent) {
+    if (savedConsent === "accepted") loadYandexMetrika();
     banner.setAttribute("hidden", "");
-    return;
+  } else {
+    banner.removeAttribute("hidden");
+    requestAnimationFrame(() => {
+      banner.classList.add("is-visible");
+      refreshIcons();
+    });
   }
 
-  banner.removeAttribute("hidden");
-  requestAnimationFrame(() => {
-    banner.classList.add("is-visible");
-    refreshIcons();
+  resetButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      try {
+        localStorage.removeItem(consentKey);
+      } catch {
+        // Cookie deletion still lets the user choose again when localStorage is unavailable.
+      }
+      document.cookie = `${consentKey}=; path=/; max-age=0; SameSite=Lax`;
+      banner.removeAttribute("hidden");
+      requestAnimationFrame(() => {
+        banner.classList.add("is-visible");
+        refreshIcons();
+      });
+    });
   });
 
   banner.querySelector("[data-cookie-accept]")?.addEventListener("click", () => saveConsent("accepted"));

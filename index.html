@@ -70,37 +70,6 @@
     />
     <meta name="twitter:image" content="https://banya-kalyga.ru/assets/images/og-image.jpg" />
     <meta name="twitter:image:alt" content="Волшебная живая баня в Калуге: парная, чан, купель и отдых на дровах" />
-    <!-- Yandex.Metrika counter -->
-    <script type="text/javascript">
-      (function(m, e, t, r, i, k, a) {
-        m[i] = m[i] || function() {
-          (m[i].a = m[i].a || []).push(arguments);
-        };
-        m[i].l = 1 * new Date();
-        for (var j = 0; j < document.scripts.length; j++) {
-          if (document.scripts[j].src === r) {
-            return;
-          }
-        }
-        k = e.createElement(t);
-        a = e.getElementsByTagName(t)[0];
-        k.async = 1;
-        k.src = r;
-        a.parentNode.insertBefore(k, a);
-      })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js?id=110128332", "ym");
-
-      ym(110128332, "init", {
-        ssr: true,
-        webvisor: true,
-        clickmap: true,
-        ecommerce: "dataLayer",
-        referrer: document.referrer,
-        url: location.href,
-        accurateTrackBounce: true,
-        trackLinks: true,
-      });
-    </script>
-    <!-- /Yandex.Metrika counter -->
     <link rel="stylesheet" href="styles.css" />
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
     <script src="script.js" defer></script>
@@ -249,9 +218,14 @@
             "about": {
               "@id": "https://banya-kalyga.ru/#business"
             },
-            "hasPart": {
-              "@id": "https://banya-kalyga.ru/#video"
-            },
+            "hasPart": [
+              {
+                "@id": "https://banya-kalyga.ru/#video-main"
+              },
+              {
+                "@id": "https://banya-kalyga.ru/#video-extra"
+              }
+            ],
             "primaryImageOfPage": {
               "@type": "ImageObject",
               "url": "https://banya-kalyga.ru/assets/images/og-image.jpg",
@@ -262,12 +236,25 @@
           },
           {
             "@type": "VideoObject",
-            "@id": "https://banya-kalyga.ru/#video",
+            "@id": "https://banya-kalyga.ru/#video-main",
             "name": "Видео о Волшебной живой бане",
             "description": "Видео о русской бане на дровах, банном отдыхе, парной и атмосфере Волшебной живой бани в Калуге.",
             "thumbnailUrl": "https://i.ytimg.com/vi/Zr4APJ_VISc/hqdefault.jpg",
             "embedUrl": "https://www.youtube.com/embed/Zr4APJ_VISc",
             "contentUrl": "https://www.youtube.com/watch?v=Zr4APJ_VISc",
+            "inLanguage": "ru-RU",
+            "publisher": {
+              "@id": "https://banya-kalyga.ru/#business"
+            }
+          },
+          {
+            "@type": "VideoObject",
+            "@id": "https://banya-kalyga.ru/#video-extra",
+            "name": "Видео о банном отдыхе в Волшебной живой бане",
+            "description": "Дополнительное видео о банной атмосфере, отдыхе и услугах Волшебной живой бани.",
+            "thumbnailUrl": "https://i.ytimg.com/vi/e5Cr0cHeMII/hqdefault.jpg",
+            "embedUrl": "https://www.youtube.com/embed/e5Cr0cHeMII",
+            "contentUrl": "https://www.youtube.com/watch?v=e5Cr0cHeMII",
             "inLanguage": "ru-RU",
             "publisher": {
               "@id": "https://banya-kalyga.ru/#business"
@@ -308,11 +295,6 @@
     </script>
   </head>
   <body>
-    <noscript>
-      <div>
-        <img src="https://mc.yandex.ru/watch/110128332" style="position: absolute; left: -9999px;" alt="" />
-      </div>
-    </noscript>
     <header class="site-header" data-header>
       <a class="brand" href="#top" aria-label="В начало">
         <span class="brand__text">
@@ -330,6 +312,7 @@
         <a href="#formats">Форматы</a>
         <a href="#services">Услуги</a>
         <a href="#prices">Цены</a>
+        <a href="#video">Видео</a>
         <a href="#gallery">Фото</a>
         <a href="#reviews">Отзывы</a>
         <a href="#contacts">Контакты</a>
@@ -384,7 +367,7 @@
               </span>
             </button>
 
-            <button class="hero-music hero-video" type="button" aria-label="Смотреть видео о Волшебной живой бане" aria-controls="video-modal" data-video-open>
+            <a class="hero-music hero-video" href="#video" aria-label="Перейти к видео о Волшебной живой бане">
               <span class="hero-music__ring" aria-hidden="true">
                 <svg viewBox="0 0 160 160">
                   <defs>
@@ -400,7 +383,7 @@
               <span class="hero-music__center" aria-hidden="true">
                 <i data-lucide="play"></i>
               </span>
-            </button>
+            </a>
           </div>
 
           <div class="hero__actions">
@@ -444,6 +427,65 @@
           <div>
             <span class="strip-label">Выходные</span>
             <strong>3500 ₽ / час</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--video" id="video">
+        <div class="container">
+          <div class="section-heading section-heading--row">
+            <div>
+              <p class="eyebrow">Видео</p>
+              <h2>Посмотрите атмосферу живой бани до приезда</h2>
+            </div>
+            <p>
+              Два коротких ролика помогают почувствовать парную, дом-баню,
+              живой огонь и настроение отдыха в Колюпаново.
+            </p>
+          </div>
+
+          <div class="video-grid">
+            <article class="video-card" id="video-main">
+              <div class="video-card__frame">
+                <iframe
+                  width="560"
+                  height="315"
+                  src="https://www.youtube.com/embed/Zr4APJ_VISc?si=13zUtKg4w0vgHz5L"
+                  title="Видео о Волшебной живой бане"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen
+                  loading="lazy"
+                ></iframe>
+              </div>
+              <div class="video-card__body">
+                <span>01</span>
+                <h3>Волшебная живая баня</h3>
+                <p>Парная, домик, детали интерьера и настроение спокойного банного отдыха.</p>
+              </div>
+            </article>
+
+            <article class="video-card" id="video-extra">
+              <div class="video-card__frame">
+                <iframe
+                  width="560"
+                  height="315"
+                  src="https://www.youtube.com/embed/e5Cr0cHeMII?si=_k4gEuQJE61s7vir"
+                  title="Видео о банном отдыхе в Волшебной живой бане"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen
+                  loading="lazy"
+                ></iframe>
+              </div>
+              <div class="video-card__body">
+                <span>02</span>
+                <h3>Банный отдых в кадре</h3>
+                <p>Еще один взгляд на атмосферу, тепло дерева, пар и уютную компанию.</p>
+              </div>
+            </article>
           </div>
         </div>
       </section>
@@ -1074,7 +1116,10 @@
           <strong>Волшебная живая баня</strong>
           <span>Русская баня на дровах в Калуге</span>
         </div>
-        <a href="#top">Наверх</a>
+        <nav class="footer-links" aria-label="Юридическая информация">
+          <a href="cookie-policy.html">Политика Cookie</a>
+          <a href="#top">Наверх</a>
+        </nav>
       </div>
     </footer>
 
@@ -1212,7 +1257,10 @@
       </div>
       <div class="cookie-banner__text">
         <strong>Cookie</strong>
-        <p>Используем cookie, чтобы сайт работал корректно и запоминал ваш выбор.</p>
+        <p>
+          Используем cookie, чтобы сайт работал корректно и запоминал ваш выбор.
+          <a href="cookie-policy.html">Подробнее</a>
+        </p>
       </div>
       <div class="cookie-banner__actions">
         <button class="cookie-banner__button cookie-banner__button--primary" type="button" data-cookie-accept>
@@ -1223,28 +1271,6 @@
         </button>
       </div>
     </section>
-
-    <div class="video-modal" id="video-modal" data-video-modal aria-hidden="true">
-      <button class="icon-button video-modal__close" type="button" aria-label="Закрыть видео" data-video-close>
-        <i data-lucide="x"></i>
-      </button>
-      <div class="video-modal__dialog" role="dialog" aria-modal="true" aria-label="Видео о Волшебной живой бане">
-        <div class="video-modal__frame">
-          <iframe
-            width="560"
-            height="315"
-            src=""
-            data-video-frame
-            data-video-src="https://www.youtube.com/embed/Zr4APJ_VISc?si=13zUtKg4w0vgHz5L&amp;autoplay=1"
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen
-          ></iframe>
-        </div>
-      </div>
-    </div>
 
     <div class="lightbox" data-lightbox aria-hidden="true">
       <button class="icon-button lightbox__close" type="button" aria-label="Закрыть фото" data-lightbox-close>
