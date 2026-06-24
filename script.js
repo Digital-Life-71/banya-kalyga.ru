@@ -244,6 +244,8 @@ function setupAudioPlayer() {
   const currentTimeElement = audioPlayer.querySelector("[data-audio-current]");
   const durationElement = audioPlayer.querySelector("[data-audio-duration]");
   const seekInput = audioPlayer.querySelector("[data-audio-seek]");
+  const volumeButton = audioPlayer.querySelector("[data-audio-volume-toggle]");
+  const volumePopover = audioPlayer.querySelector("[data-audio-volume-popover]");
   const volumeInput = audioPlayer.querySelector("[data-audio-volume]");
   const trackButtons = [...audioPlayer.querySelectorAll("[data-track-src]")];
 
@@ -272,6 +274,7 @@ function setupAudioPlayer() {
     panel.setAttribute("aria-hidden", String(!isOpen));
     toggleButton.setAttribute("aria-expanded", String(isOpen));
     if (isOpen) setMiniVolumeOpen(false);
+    if (!isOpen) setPanelVolumeOpen(false);
     if (miniPlayer) {
       miniPlayer.setAttribute("aria-hidden", String(isOpen || !miniPlayerEnabled));
     }
@@ -357,6 +360,12 @@ function setupAudioPlayer() {
     miniVolumePopover?.setAttribute("aria-hidden", String(!isOpen));
   }
 
+  function setPanelVolumeOpen(isOpen) {
+    audioPlayer.classList.toggle("is-panel-volume-open", isOpen);
+    volumeButton?.setAttribute("aria-expanded", String(isOpen));
+    volumePopover?.setAttribute("aria-hidden", String(!isOpen));
+  }
+
   function setVolume(value) {
     const nextVolume = Math.min(Math.max(Number(value), 0), 1);
     audio.volume = nextVolume;
@@ -377,6 +386,7 @@ function setupAudioPlayer() {
 
   miniVolumeButton?.addEventListener("click", (event) => {
     event.stopPropagation();
+    setPanelVolumeOpen(false);
     setMiniVolumeOpen(!audioPlayer.classList.contains("is-volume-open"));
   });
 
@@ -384,14 +394,26 @@ function setupAudioPlayer() {
     event.stopPropagation();
   });
 
+  volumeButton?.addEventListener("click", (event) => {
+    event.stopPropagation();
+    setMiniVolumeOpen(false);
+    setPanelVolumeOpen(!audioPlayer.classList.contains("is-panel-volume-open"));
+  });
+
+  volumePopover?.addEventListener("click", (event) => {
+    event.stopPropagation();
+  });
+
   toggleButton.addEventListener("click", openAndPlay);
   heroButton?.addEventListener("click", openAndPlay);
   miniExpandButton?.addEventListener("click", () => {
     setMiniVolumeOpen(false);
+    setPanelVolumeOpen(false);
     updateOpenState(true);
   });
 
   collapseButton?.addEventListener("click", () => {
+    setPanelVolumeOpen(false);
     updateOpenState(false);
   });
 
@@ -427,11 +449,12 @@ function setupAudioPlayer() {
   });
 
   document.addEventListener("click", (event) => {
-    if (
-      event.target instanceof Element &&
-      !event.target.closest("[data-audio-mini-volume-toggle], [data-audio-mini-volume-popover]")
-    ) {
+    if (!(event.target instanceof Element)) return;
+    if (!event.target.closest("[data-audio-mini-volume-toggle], [data-audio-mini-volume-popover]")) {
       setMiniVolumeOpen(false);
+    }
+    if (!event.target.closest("[data-audio-volume-toggle], [data-audio-volume-popover]")) {
+      setPanelVolumeOpen(false);
     }
   });
 
@@ -444,6 +467,7 @@ function setupAudioPlayer() {
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
       setMiniVolumeOpen(false);
+      setPanelVolumeOpen(false);
       updateOpenState(false);
     }
   });
