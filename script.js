@@ -227,6 +227,12 @@ function setupAudioPlayer() {
   const audio = audioPlayer.querySelector("[data-audio-element]");
   const panel = audioPlayer.querySelector("[data-audio-panel]");
   const toggleButton = audioPlayer.querySelector("[data-audio-toggle]");
+  const miniPlayer = audioPlayer.querySelector("[data-audio-mini]");
+  const miniPlayButton = audioPlayer.querySelector("[data-audio-mini-play]");
+  const miniPrevButton = audioPlayer.querySelector("[data-audio-mini-prev]");
+  const miniNextButton = audioPlayer.querySelector("[data-audio-mini-next]");
+  const miniExpandButton = audioPlayer.querySelector("[data-audio-mini-expand]");
+  const miniVolumeInput = audioPlayer.querySelector("[data-audio-mini-volume]");
   const heroButton = document.querySelector("[data-audio-hero]");
   const collapseButton = audioPlayer.querySelector("[data-audio-collapse]");
   const playButton = audioPlayer.querySelector("[data-audio-play]");
@@ -248,6 +254,7 @@ function setupAudioPlayer() {
   }));
 
   let currentTrack = 0;
+  let miniPlayerEnabled = false;
 
   function formatTime(seconds) {
     if (!Number.isFinite(seconds)) return "0:00";
@@ -262,6 +269,9 @@ function setupAudioPlayer() {
     audioPlayer.classList.toggle("is-open", isOpen);
     panel.setAttribute("aria-hidden", String(!isOpen));
     toggleButton.setAttribute("aria-expanded", String(isOpen));
+    if (miniPlayer) {
+      miniPlayer.setAttribute("aria-hidden", String(isOpen || !miniPlayerEnabled));
+    }
   }
 
   function updateActiveTrack() {
@@ -276,6 +286,7 @@ function setupAudioPlayer() {
     const isPlaying = !audio.paused && !audio.ended;
     audioPlayer.classList.toggle("is-playing", isPlaying);
     playButton.setAttribute("aria-label", isPlaying ? "Поставить на паузу" : "Воспроизвести");
+    miniPlayButton?.setAttribute("aria-label", isPlaying ? "Поставить на паузу" : "Воспроизвести");
   }
 
   function updateProgress() {
@@ -298,6 +309,11 @@ function setupAudioPlayer() {
 
   function playCurrent() {
     if (!audio.src) loadTrack(currentTrack);
+    miniPlayerEnabled = true;
+    audioPlayer.classList.add("has-mini");
+    if (miniPlayer) {
+      miniPlayer.setAttribute("aria-hidden", String(audioPlayer.classList.contains("is-open")));
+    }
 
     audio
       .play()
@@ -330,15 +346,26 @@ function setupAudioPlayer() {
     if (audio.paused) playCurrent();
   }
 
-  if (volumeInput) {
-    audio.volume = Number(volumeInput.value);
-    volumeInput.addEventListener("input", () => {
-      audio.volume = Number(volumeInput.value);
-    });
+  function setVolume(value) {
+    const nextVolume = Math.min(Math.max(Number(value), 0), 1);
+    audio.volume = nextVolume;
+    if (volumeInput) volumeInput.value = String(nextVolume);
+    if (miniVolumeInput) miniVolumeInput.value = String(nextVolume);
   }
+
+  setVolume(volumeInput?.value || miniVolumeInput?.value || 0.75);
+
+  volumeInput?.addEventListener("input", () => {
+    setVolume(volumeInput.value);
+  });
+
+  miniVolumeInput?.addEventListener("input", () => {
+    setVolume(miniVolumeInput.value);
+  });
 
   toggleButton.addEventListener("click", openAndPlay);
   heroButton?.addEventListener("click", openAndPlay);
+  miniExpandButton?.addEventListener("click", () => updateOpenState(true));
 
   collapseButton?.addEventListener("click", () => {
     updateOpenState(false);
@@ -355,6 +382,16 @@ function setupAudioPlayer() {
 
   prevButton?.addEventListener("click", playPrev);
   nextButton?.addEventListener("click", playNext);
+  miniPrevButton?.addEventListener("click", playPrev);
+  miniNextButton?.addEventListener("click", playNext);
+
+  miniPlayButton?.addEventListener("click", () => {
+    if (audio.paused) {
+      playCurrent();
+    } else {
+      pauseCurrent();
+    }
+  });
 
   trackButtons.forEach((button, index) => {
     button.addEventListener("click", () => playTrack(index));
