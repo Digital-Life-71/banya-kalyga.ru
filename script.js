@@ -89,6 +89,7 @@ function setupAudioPlayer() {
   const audio = audioPlayer.querySelector("[data-audio-element]");
   const panel = audioPlayer.querySelector("[data-audio-panel]");
   const toggleButton = audioPlayer.querySelector("[data-audio-toggle]");
+  const heroButton = document.querySelector("[data-audio-hero]");
   const collapseButton = audioPlayer.querySelector("[data-audio-collapse]");
   const playButton = audioPlayer.querySelector("[data-audio-play]");
   const prevButton = audioPlayer.querySelector("[data-audio-prev]");
@@ -186,6 +187,11 @@ function setupAudioPlayer() {
     playTrack(currentTrack - 1);
   }
 
+  function openAndPlay() {
+    updateOpenState(true);
+    if (audio.paused) playCurrent();
+  }
+
   if (volumeInput) {
     audio.volume = Number(volumeInput.value);
     volumeInput.addEventListener("input", () => {
@@ -193,10 +199,8 @@ function setupAudioPlayer() {
     });
   }
 
-  toggleButton.addEventListener("click", () => {
-    updateOpenState(true);
-    if (audio.paused) playCurrent();
-  });
+  toggleButton.addEventListener("click", openAndPlay);
+  heroButton?.addEventListener("click", openAndPlay);
 
   collapseButton?.addEventListener("click", () => {
     updateOpenState(false);
@@ -244,6 +248,7 @@ function setupRevealAnimations() {
     ".hero h1",
     ".hero__lead",
     ".hero__actions",
+    ".hero-music",
     ".hero__facts",
     ".section-heading",
     ".section-copy",
