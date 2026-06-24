@@ -320,6 +320,7 @@ h1 {
   right: 0;
   bottom: 188px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: flex-end;
   gap: 18px;
@@ -2951,8 +2952,9 @@ section[id] {
     position: relative;
     right: auto;
     bottom: auto;
+    align-items: flex-end;
     justify-content: flex-end;
-    width: 100%;
+    width: 148px;
     margin: 0 0 28px auto;
   }
 
@@ -3166,7 +3168,7 @@ section[id] {
 
   .hero-media-actions {
     gap: 10px;
-    width: min(100%, 258px);
+    width: 124px;
     margin-bottom: 24px;
   }
 
