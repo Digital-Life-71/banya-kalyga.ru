@@ -1046,7 +1046,22 @@
       <button class="icon-button lightbox__close" type="button" aria-label="Закрыть фото" data-lightbox-close>
         <i data-lucide="x"></i>
       </button>
-      <img src="" alt="" data-lightbox-image />
+      <div class="lightbox__stage" data-lightbox-stage>
+        <button class="icon-button lightbox__nav lightbox__nav--prev" type="button" aria-label="Предыдущее фото" data-lightbox-prev>
+          <i data-lucide="chevron-left"></i>
+        </button>
+        <figure class="lightbox__figure">
+          <img src="" alt="" data-lightbox-image />
+          <figcaption class="lightbox__caption">
+            <span data-lightbox-caption></span>
+            <strong data-lightbox-counter></strong>
+          </figcaption>
+        </figure>
+        <button class="icon-button lightbox__nav lightbox__nav--next" type="button" aria-label="Следующее фото" data-lightbox-next>
+          <i data-lucide="chevron-right"></i>
+        </button>
+      </div>
+      <div class="lightbox__thumbs" data-lightbox-thumbs aria-label="Миниатюры галереи"></div>
     </div>
   </body>
 </html>
