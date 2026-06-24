@@ -1573,14 +1573,14 @@ section[id] {
   bottom: 0;
   display: grid;
   grid-template-columns: minmax(256px, 0.95fr) minmax(256px, 1.05fr);
-  grid-template-rows: auto minmax(0, 1fr);
+  grid-template-rows: 38px minmax(0, 1fr);
   grid-template-areas:
     "head head"
     "main list";
   align-items: stretch;
   gap: 12px;
   width: min(646px, calc(100vw - 44px));
-  height: min(334px, calc(100svh - 44px));
+  height: min(314px, calc(100svh - 44px));
   padding: 12px;
   overflow: hidden;
   color: var(--white);
@@ -1620,48 +1620,53 @@ section[id] {
 .audio-player__head {
   grid-area: head;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: auto;
   align-items: center;
+  justify-content: end;
   gap: 10px;
   min-width: 0;
   align-self: start;
-  padding: 1px 2px 0;
+  padding: 0 2px;
 }
 
 .audio-player__track {
   display: grid;
-  gap: 5px;
+  gap: 6px;
   min-width: 0;
+  padding: 8px 10px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
 }
 
-.audio-player__head span {
+.audio-player__track span {
   width: fit-content;
-  padding: 5px 8px;
+  padding: 4px 8px;
   color: var(--gold);
   background: rgba(200, 135, 67, 0.12);
   border: 1px solid rgba(200, 135, 67, 0.22);
   border-radius: 999px;
-  font-size: 0.68rem;
+  font-size: 0.66rem;
   font-weight: 950;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
-.audio-player__head strong {
+.audio-player__track strong {
   display: -webkit-box;
   overflow: hidden;
   color: var(--white);
-  font-size: 1.06rem;
+  font-size: 0.98rem;
   line-height: 1.18;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 1;
 }
 
 .audio-player__main {
   grid-area: main;
   display: grid;
   align-content: center;
-  gap: 11px;
+  gap: 10px;
   min-height: 0;
   padding: 12px;
   background:
@@ -2577,6 +2582,7 @@ section[id] {
     width: 100%;
     height: auto;
     grid-template-columns: 1fr;
+    grid-template-rows: 36px auto auto;
     grid-template-areas:
       "head"
       "main"
@@ -2677,7 +2683,7 @@ section[id] {
     align-self: center;
   }
 
-  .audio-player__head strong,
+  .audio-player__track strong,
   .audio-player__playlist strong {
     white-space: normal;
   }
