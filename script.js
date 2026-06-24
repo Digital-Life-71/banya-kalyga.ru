@@ -11,6 +11,10 @@ const lightboxPrev = document.querySelector("[data-lightbox-prev]");
 const lightboxNext = document.querySelector("[data-lightbox-next]");
 const lightboxStage = document.querySelector("[data-lightbox-stage]");
 const lightboxThumbs = document.querySelector("[data-lightbox-thumbs]");
+const videoOpen = document.querySelector("[data-video-open]");
+const videoModal = document.querySelector("[data-video-modal]");
+const videoClose = document.querySelector("[data-video-close]");
+const videoFrame = document.querySelector("[data-video-frame]");
 const galleryItems = gallery ? [...gallery.querySelectorAll("[data-full]")] : [];
 const galleryPhotos = galleryItems.map((item) => {
   const image = item.querySelector("img");
@@ -109,6 +113,22 @@ function closeLightbox() {
   lightboxImage.src = "";
 }
 
+function openVideoModal() {
+  if (!videoModal || !videoFrame) return;
+  videoFrame.src = videoFrame.dataset.videoSrc || "";
+  videoModal.classList.add("is-open");
+  videoModal.setAttribute("aria-hidden", "false");
+  document.body.classList.add("video-open");
+}
+
+function closeVideoModal() {
+  if (!videoModal || !videoFrame) return;
+  videoModal.classList.remove("is-open");
+  videoModal.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("video-open");
+  videoFrame.src = "";
+}
+
 function showPrevLightboxPhoto() {
   showLightboxPhoto(currentLightboxIndex - 1);
 }
@@ -166,6 +186,20 @@ if (lightbox) {
   });
 }
 
+if (videoOpen) {
+  videoOpen.addEventListener("click", openVideoModal);
+}
+
+if (videoModal) {
+  videoModal.addEventListener("click", (event) => {
+    if (event.target === videoModal) closeVideoModal();
+  });
+}
+
+if (videoClose) {
+  videoClose.addEventListener("click", closeVideoModal);
+}
+
 if (lightboxClose) {
   lightboxClose.addEventListener("click", closeLightbox);
 }
@@ -214,6 +248,7 @@ document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") {
     closeMenu();
     closeLightbox();
+    closeVideoModal();
   }
   if (!lightbox?.classList.contains("is-open")) return;
   if (event.key === "ArrowLeft") showPrevLightboxPhoto();
@@ -483,7 +518,7 @@ function setupRevealAnimations() {
     ".hero h1",
     ".hero__lead",
     ".hero__actions",
-    ".hero-music",
+    ".hero-media-actions",
     ".hero__facts",
     ".section-heading",
     ".section-copy",

@@ -249,12 +249,28 @@
             "about": {
               "@id": "https://banya-kalyga.ru/#business"
             },
+            "hasPart": {
+              "@id": "https://banya-kalyga.ru/#video"
+            },
             "primaryImageOfPage": {
               "@type": "ImageObject",
               "url": "https://banya-kalyga.ru/assets/images/og-image.jpg",
               "width": 1200,
               "height": 630,
               "caption": "Волшебная живая баня в Калуге: парная, чан, купель и отдых на дровах"
+            }
+          },
+          {
+            "@type": "VideoObject",
+            "@id": "https://banya-kalyga.ru/#video",
+            "name": "Видео о Волшебной живой бане",
+            "description": "Видео о русской бане на дровах, банном отдыхе, парной и атмосфере Волшебной живой бани в Калуге.",
+            "thumbnailUrl": "https://i.ytimg.com/vi/Zr4APJ_VISc/hqdefault.jpg",
+            "embedUrl": "https://www.youtube.com/embed/Zr4APJ_VISc",
+            "contentUrl": "https://www.youtube.com/watch?v=Zr4APJ_VISc",
+            "inLanguage": "ru-RU",
+            "publisher": {
+              "@id": "https://banya-kalyga.ru/#business"
             }
           },
           {
@@ -349,23 +365,43 @@
             индивидуальное парение с мастером.
           </p>
 
-          <button class="hero-music" type="button" aria-label="Включить музыку Волшебная живая баня" data-audio-hero>
-            <span class="hero-music__ring" aria-hidden="true">
-              <svg viewBox="0 0 160 160">
-                <defs>
-                  <path id="hero-music-circle" d="M80 80 m -58 0 a 58 58 0 1 1 116 0 a 58 58 0 1 1 -116 0" />
-                </defs>
-                <text>
-                  <textPath href="#hero-music-circle">
-                    ВКЛЮЧИТЬ МУЗЫКУ - ВОЛШЕБНАЯ ЖИВАЯ БАНЯ -
-                  </textPath>
-                </text>
-              </svg>
-            </span>
-            <span class="hero-music__center" aria-hidden="true">
-              <i data-lucide="music-2"></i>
-            </span>
-          </button>
+          <div class="hero-media-actions" aria-label="Медиа на первом экране">
+            <button class="hero-music" type="button" aria-label="Включить музыку Волшебная живая баня" data-audio-hero>
+              <span class="hero-music__ring" aria-hidden="true">
+                <svg viewBox="0 0 160 160">
+                  <defs>
+                    <path id="hero-music-circle" d="M80 80 m -58 0 a 58 58 0 1 1 116 0 a 58 58 0 1 1 -116 0" />
+                  </defs>
+                  <text>
+                    <textPath href="#hero-music-circle">
+                      ВКЛЮЧИТЬ МУЗЫКУ - ВОЛШЕБНАЯ ЖИВАЯ БАНЯ -
+                    </textPath>
+                  </text>
+                </svg>
+              </span>
+              <span class="hero-music__center" aria-hidden="true">
+                <i data-lucide="music-2"></i>
+              </span>
+            </button>
+
+            <button class="hero-music hero-video" type="button" aria-label="Смотреть видео о Волшебной живой бане" aria-controls="video-modal" data-video-open>
+              <span class="hero-music__ring" aria-hidden="true">
+                <svg viewBox="0 0 160 160">
+                  <defs>
+                    <path id="hero-video-circle" d="M80 80 m -58 0 a 58 58 0 1 1 116 0 a 58 58 0 1 1 -116 0" />
+                  </defs>
+                  <text>
+                    <textPath href="#hero-video-circle">
+                      СМОТРЕТЬ ВИДЕО - ВОЛШЕБНАЯ ЖИВАЯ БАНЯ -
+                    </textPath>
+                  </text>
+                </svg>
+              </span>
+              <span class="hero-music__center" aria-hidden="true">
+                <i data-lucide="play"></i>
+              </span>
+            </button>
+          </div>
 
           <div class="hero__actions">
             <a class="button button--primary" href="https://web.max.ru/413130154" target="_blank" rel="noreferrer">
@@ -1187,6 +1223,28 @@
         </button>
       </div>
     </section>
+
+    <div class="video-modal" id="video-modal" data-video-modal aria-hidden="true">
+      <button class="icon-button video-modal__close" type="button" aria-label="Закрыть видео" data-video-close>
+        <i data-lucide="x"></i>
+      </button>
+      <div class="video-modal__dialog" role="dialog" aria-modal="true" aria-label="Видео о Волшебной живой бане">
+        <div class="video-modal__frame">
+          <iframe
+            width="560"
+            height="315"
+            src=""
+            data-video-frame
+            data-video-src="https://www.youtube.com/embed/Zr4APJ_VISc?si=13zUtKg4w0vgHz5L&amp;autoplay=1"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+    </div>
 
     <div class="lightbox" data-lightbox aria-hidden="true">
       <button class="icon-button lightbox__close" type="button" aria-label="Закрыть фото" data-lightbox-close>
