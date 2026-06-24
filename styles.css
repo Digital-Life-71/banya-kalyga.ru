@@ -1572,9 +1572,10 @@ section[id] {
   right: 0;
   bottom: 0;
   display: grid;
-  grid-template-columns: minmax(262px, 0.88fr) minmax(268px, 1.12fr);
+  grid-template-columns: minmax(256px, 0.95fr) minmax(256px, 1.05fr);
+  grid-template-rows: auto minmax(0, 1fr);
   grid-template-areas:
-    "head list"
+    "head head"
     "main list";
   align-items: stretch;
   gap: 12px;
@@ -1839,9 +1840,9 @@ section[id] {
   grid-area: list;
   display: grid;
   grid-template-rows: auto minmax(0, 1fr);
-  gap: 8px;
+  gap: 7px;
   min-height: 0;
-  padding: 11px;
+  padding: 10px;
   background:
     linear-gradient(180deg, rgba(12, 10, 8, 0.14), rgba(255, 255, 255, 0.055));
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -1857,13 +1858,13 @@ section[id] {
 
 .audio-player__list-head span {
   color: var(--white);
-  font-size: 0.86rem;
+  font-size: 0.82rem;
   font-weight: 950;
 }
 
 .audio-player__list-head small {
   color: rgba(255, 255, 255, 0.58);
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   font-weight: 850;
 }
 
@@ -1967,10 +1968,10 @@ section[id] {
 
 .audio-player__playlist {
   display: grid;
-  gap: 6px;
+  gap: 5px;
   min-height: 0;
   max-height: none;
-  padding: 1px 7px 1px 1px;
+  padding: 1px 6px 1px 1px;
   overflow-y: auto;
   overscroll-behavior: contain;
   scrollbar-color: rgba(200, 135, 67, 0.86) rgba(255, 255, 255, 0.08);
@@ -1993,12 +1994,13 @@ section[id] {
 
 .audio-player__playlist button {
   display: grid;
-  grid-template-columns: 34px minmax(0, 1fr);
+  grid-template-columns: 30px minmax(0, 1fr);
   align-items: center;
-  gap: 9px;
+  gap: 8px;
   width: 100%;
-  min-height: 42px;
-  padding: 7px 10px 7px 7px;
+  height: 36px;
+  min-height: 36px;
+  padding: 5px 9px 5px 6px;
   color: rgba(255, 255, 255, 0.9);
   text-align: left;
   background: rgba(255, 255, 255, 0.08);
@@ -2023,13 +2025,13 @@ section[id] {
 
 .audio-player__playlist span {
   display: grid;
-  width: 28px;
-  height: 28px;
+  width: 24px;
+  height: 24px;
   place-items: center;
   color: var(--gold);
   background: rgba(200, 135, 67, 0.14);
   border-radius: 50%;
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   font-weight: 950;
 }
 
@@ -2042,10 +2044,10 @@ section[id] {
 .audio-player__playlist strong {
   display: -webkit-box;
   overflow: hidden;
-  font-size: 0.84rem;
-  line-height: 1.2;
+  font-size: 0.8rem;
+  line-height: 1.16;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 1;
 }
 
 @keyframes audio-pulse {
