@@ -987,10 +987,10 @@
         </button>
       </div>
 
-      <section class="audio-player__panel" aria-label="Мини-плеер аудио" aria-hidden="true" data-audio-panel>
+      <section class="audio-player__panel" aria-label="Аудиоплеер" aria-hidden="true" data-audio-panel>
         <div class="audio-player__head">
-          <div>
-            <span>Аудио</span>
+          <div class="audio-player__track">
+            <span>Сейчас играет</span>
             <strong data-audio-title>Волшебная живая баня</strong>
           </div>
           <button class="audio-player__icon" type="button" aria-label="Свернуть плеер" data-audio-collapse>
@@ -998,68 +998,81 @@
           </button>
         </div>
 
-        <div class="audio-player__controls">
-          <button class="audio-player__icon" type="button" aria-label="Предыдущий трек" data-audio-prev>
-            <i data-lucide="skip-back"></i>
-          </button>
-          <button class="audio-player__play" type="button" aria-label="Воспроизвести" data-audio-play>
-            <i class="audio-player__play-icon" data-lucide="play"></i>
-            <i class="audio-player__pause-icon" data-lucide="pause"></i>
-          </button>
-          <button class="audio-player__icon" type="button" aria-label="Следующий трек" data-audio-next>
-            <i data-lucide="skip-forward"></i>
-          </button>
+        <div class="audio-player__main">
+          <div class="audio-player__control-row">
+            <div class="audio-player__steam" aria-hidden="true">
+              <i data-lucide="waves"></i>
+            </div>
+            <div class="audio-player__controls">
+              <button class="audio-player__icon" type="button" aria-label="Предыдущий трек" data-audio-prev>
+                <i data-lucide="skip-back"></i>
+              </button>
+              <button class="audio-player__play" type="button" aria-label="Воспроизвести" data-audio-play>
+                <i class="audio-player__play-icon" data-lucide="play"></i>
+                <i class="audio-player__pause-icon" data-lucide="pause"></i>
+              </button>
+              <button class="audio-player__icon" type="button" aria-label="Следующий трек" data-audio-next>
+                <i data-lucide="skip-forward"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="audio-player__progress">
+            <span data-audio-current>0:00</span>
+            <input type="range" min="0" max="1000" value="0" aria-label="Позиция трека" data-audio-seek />
+            <span data-audio-duration>0:00</span>
+          </div>
+
+          <div class="audio-player__volume">
+            <i data-lucide="volume-2"></i>
+            <input type="range" min="0" max="1" step="0.01" value="0.75" aria-label="Громкость" data-audio-volume />
+          </div>
         </div>
 
-        <div class="audio-player__progress">
-          <span data-audio-current>0:00</span>
-          <input type="range" min="0" max="1000" value="0" aria-label="Позиция трека" data-audio-seek />
-          <span data-audio-duration>0:00</span>
-        </div>
-
-        <div class="audio-player__volume">
-          <i data-lucide="volume-2"></i>
-          <input type="range" min="0" max="1" step="0.01" value="0.75" aria-label="Громкость" data-audio-volume />
-        </div>
-
-        <div class="audio-player__playlist" data-audio-playlist>
-          <button
-            class="is-active"
-            type="button"
-            data-track-src="assets/audio/volshebnaya-zhivaya-banya.mp3"
-            data-track-title="Волшебная живая баня"
-          >
-            <span>01</span>
-            <strong>Волшебная живая баня</strong>
-          </button>
-          <button type="button" data-track-src="assets/audio/dyhanie-para.mp3" data-track-title="Дыхание пара">
-            <span>02</span>
-            <strong>Дыхание пара</strong>
-          </button>
-          <button type="button" data-track-src="assets/audio/obshchiy-sbor.mp3" data-track-title="Общий сбор">
-            <span>03</span>
-            <strong>Общий сбор</strong>
-          </button>
-          <button type="button" data-track-src="assets/audio/bannyy-put.mp3" data-track-title="Банный путь">
-            <span>04</span>
-            <strong>Банный путь</strong>
-          </button>
-          <button type="button" data-track-src="assets/audio/60-na-60.mp3" data-track-title="60 на 60">
-            <span>05</span>
-            <strong>60 на 60</strong>
-          </button>
-          <button
-            type="button"
-            data-track-src="assets/audio/priglashenie-v-volshebnuyu-zhivuyu-banyu.mp3"
-            data-track-title="Приглашение в Волшебную живую баню"
-          >
-            <span>06</span>
-            <strong>Приглашение в Волшебную живую баню</strong>
-          </button>
-          <button type="button" data-track-src="assets/audio/spasibo-alexey.mp3" data-track-title="Спасибо Алексей">
-            <span>07</span>
-            <strong>Спасибо Алексей</strong>
-          </button>
+        <div class="audio-player__list">
+          <div class="audio-player__list-head">
+            <span>Плейлист</span>
+            <small>7 треков</small>
+          </div>
+          <div class="audio-player__playlist" data-audio-playlist>
+            <button
+              class="is-active"
+              type="button"
+              data-track-src="assets/audio/volshebnaya-zhivaya-banya.mp3"
+              data-track-title="Волшебная живая баня"
+            >
+              <span>01</span>
+              <strong>Волшебная живая баня</strong>
+            </button>
+            <button type="button" data-track-src="assets/audio/dyhanie-para.mp3" data-track-title="Дыхание пара">
+              <span>02</span>
+              <strong>Дыхание пара</strong>
+            </button>
+            <button type="button" data-track-src="assets/audio/obshchiy-sbor.mp3" data-track-title="Общий сбор">
+              <span>03</span>
+              <strong>Общий сбор</strong>
+            </button>
+            <button type="button" data-track-src="assets/audio/bannyy-put.mp3" data-track-title="Банный путь">
+              <span>04</span>
+              <strong>Банный путь</strong>
+            </button>
+            <button type="button" data-track-src="assets/audio/60-na-60.mp3" data-track-title="60 на 60">
+              <span>05</span>
+              <strong>60 на 60</strong>
+            </button>
+            <button
+              type="button"
+              data-track-src="assets/audio/priglashenie-v-volshebnuyu-zhivuyu-banyu.mp3"
+              data-track-title="Приглашение в Волшебную живую баню"
+            >
+              <span>06</span>
+              <strong>Приглашение в Волшебную живую баню</strong>
+            </button>
+            <button type="button" data-track-src="assets/audio/spasibo-alexey.mp3" data-track-title="Спасибо Алексей">
+              <span>07</span>
+              <strong>Спасибо Алексей</strong>
+            </button>
+          </div>
         </div>
 
         <audio preload="metadata" data-audio-element></audio>
