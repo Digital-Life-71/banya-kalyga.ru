@@ -1653,6 +1653,7 @@ section[id] {
   }
 
   .brand {
+    order: 1;
     min-width: 0;
   }
 
@@ -1667,6 +1668,7 @@ section[id] {
 
   .header-phone {
     display: inline-flex;
+    order: 2;
     width: 44px;
     min-height: 44px;
     padding: 0;
@@ -1674,6 +1676,7 @@ section[id] {
 
   .header-map {
     display: inline-grid;
+    order: 3;
     width: 44px;
     height: 44px;
     place-items: center;
@@ -1684,6 +1687,7 @@ section[id] {
 
   .menu-toggle {
     display: inline-grid;
+    order: 4;
   }
 
   .main-nav {
