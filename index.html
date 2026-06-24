@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ru">
+<html lang="ru" prefix="og: https://ogp.me/ns# business: https://ogp.me/ns/business# place: https://ogp.me/ns/place#">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -8,8 +8,19 @@
       name="description"
       content="Волшебная живая баня в Калуге: аренда русской бани на дровах в Колюпаново, сибирский чан, купель, веники, парение с мастером и отдых до 10 гостей."
     />
+    <meta
+      name="keywords"
+      content="баня Калуга, русская баня на дровах Калуга, баня Колюпаново, банный чан Калуга, купель Калуга, парение с мастером, аренда бани Калуга, Волшебная живая баня"
+    />
     <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="author" content="Волшебная живая баня" />
+    <meta name="publisher" content="Волшебная живая баня" />
+    <meta name="application-name" content="Волшебная живая баня" />
+    <meta name="apple-mobile-web-app-title" content="Живая баня" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta name="theme-color" content="#153327" />
+    <meta name="color-scheme" content="light" />
     <meta name="geo.region" content="RU-KLU" />
     <meta name="geo.placename" content="Калуга, Колюпаново" />
     <meta name="geo.position" content="54.441089;36.232188" />
@@ -23,23 +34,42 @@
     <meta property="og:locale" content="ru_RU" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Волшебная живая баня" />
-    <meta property="og:title" content="Русская баня на дровах в Калуге" />
+    <meta property="og:title" content="Волшебная живая баня | Русская баня на дровах в Калуге" />
     <meta
       property="og:description"
-      content="Уютная дом-баня в Колюпаново: мягкий пар, сибирский чан, купель, мангальная зона и индивидуальное парение с мастером."
+      content="Дом-баня в Колюпаново для семьи, друзей и камерных праздников: мягкий пар, сибирский чан, купель, мангальная зона и индивидуальное парение с мастером."
     />
     <meta property="og:url" content="https://banya-kalyga.ru/" />
     <meta property="og:image" content="https://banya-kalyga.ru/assets/images/og-image.jpg" />
+    <meta property="og:image:url" content="https://banya-kalyga.ru/assets/images/og-image.jpg" />
+    <meta property="og:image:secure_url" content="https://banya-kalyga.ru/assets/images/og-image.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Парная Волшебной живой бани в Калуге" />
+    <meta property="og:image:alt" content="Волшебная живая баня в Калуге: парная, чан, купель и отдых на дровах" />
+    <meta property="og:updated_time" content="2026-06-25T00:00:00+03:00" />
+    <meta property="og:see_also" content="https://yandex.ru/maps/org/volshebnaya_zhivaya_banya/110090709629/" />
+    <meta property="og:see_also" content="https://vk.com/public211535735" />
+    <meta property="og:see_also" content="https://web.max.ru/-72553877540105" />
+    <meta property="place:location:latitude" content="54.441089" />
+    <meta property="place:location:longitude" content="36.232188" />
+    <meta property="business:contact_data:street_address" content="д. Колюпаново, ул. Извилистая, 15а" />
+    <meta property="business:contact_data:locality" content="Калуга" />
+    <meta property="business:contact_data:region" content="Калужская область" />
+    <meta property="business:contact_data:postal_code" content="248911" />
+    <meta property="business:contact_data:country_name" content="Россия" />
+    <meta property="business:contact_data:phone_number" content="+79105105348" />
+    <meta property="business:contact_data:website" content="https://banya-kalyga.ru/" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Русская баня на дровах в Калуге" />
+    <meta name="twitter:url" content="https://banya-kalyga.ru/" />
+    <meta name="twitter:domain" content="banya-kalyga.ru" />
+    <meta name="twitter:title" content="Волшебная живая баня | Русская баня на дровах в Калуге" />
     <meta
       name="twitter:description"
-      content="Волшебная живая баня: аренда бани на дровах, чан, купель и парение в Калуге."
+      content="Аренда бани на дровах, сибирский чан, купель, мангальная зона и парение с мастером в Калуге."
     />
     <meta name="twitter:image" content="https://banya-kalyga.ru/assets/images/og-image.jpg" />
+    <meta name="twitter:image:alt" content="Волшебная живая баня в Калуге: парная, чан, купель и отдых на дровах" />
     <link rel="stylesheet" href="styles.css" />
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
     <script src="script.js" defer></script>
@@ -80,6 +110,8 @@
             "sameAs": [
               "https://yandex.ru/maps/org/volshebnaya_zhivaya_banya/110090709629/",
               "https://vk.com/public211535735",
+              "https://web.max.ru/413130154",
+              "https://web.max.ru/-72553877540105",
               "https://banya-kalyga.tilda.ws/"
             ],
             "aggregateRating": {
@@ -170,6 +202,28 @@
             "inLanguage": "ru-RU",
             "publisher": {
               "@id": "https://banya-kalyga.ru/#business"
+            }
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://banya-kalyga.ru/#webpage",
+            "url": "https://banya-kalyga.ru/",
+            "name": "Русская баня на дровах в Калуге | Волшебная живая баня",
+            "description": "Волшебная живая баня в Калуге: аренда русской бани на дровах в Колюпаново, сибирский чан, купель, веники, парение с мастером и отдых до 10 гостей.",
+            "inLanguage": "ru-RU",
+            "dateModified": "2026-06-25",
+            "isPartOf": {
+              "@id": "https://banya-kalyga.ru/#website"
+            },
+            "about": {
+              "@id": "https://banya-kalyga.ru/#business"
+            },
+            "primaryImageOfPage": {
+              "@type": "ImageObject",
+              "url": "https://banya-kalyga.ru/assets/images/og-image.jpg",
+              "width": 1200,
+              "height": 630,
+              "caption": "Волшебная живая баня в Калуге: парная, чан, купель и отдых на дровах"
             }
           },
           {
