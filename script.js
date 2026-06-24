@@ -232,8 +232,6 @@ function setupAudioPlayer() {
   const miniPrevButton = audioPlayer.querySelector("[data-audio-mini-prev]");
   const miniNextButton = audioPlayer.querySelector("[data-audio-mini-next]");
   const miniExpandButton = audioPlayer.querySelector("[data-audio-mini-expand]");
-  const miniTitleElement = audioPlayer.querySelector("[data-audio-mini-title]");
-  const miniSeekInput = audioPlayer.querySelector("[data-audio-mini-seek]");
   const miniVolumeButton = audioPlayer.querySelector("[data-audio-mini-volume-toggle]");
   const miniVolumePopover = audioPlayer.querySelector("[data-audio-mini-volume-popover]");
   const miniVolumeInput = audioPlayer.querySelector("[data-audio-mini-volume]");
@@ -282,7 +280,6 @@ function setupAudioPlayer() {
   function updateActiveTrack() {
     const track = tracks[currentTrack];
     if (titleElement) titleElement.textContent = track.title;
-    if (miniTitleElement) miniTitleElement.textContent = track.title;
     trackButtons.forEach((button, index) => {
       button.classList.toggle("is-active", index === currentTrack);
     });
@@ -302,11 +299,6 @@ function setupAudioPlayer() {
     if (seekInput) {
       seekInput.value = Number.isFinite(audio.duration) && audio.duration > 0
         ? String(Math.round((audio.currentTime / audio.duration) * Number(seekInput.max)))
-        : "0";
-    }
-    if (miniSeekInput) {
-      miniSeekInput.value = Number.isFinite(audio.duration) && audio.duration > 0
-        ? String(Math.round((audio.currentTime / audio.duration) * Number(miniSeekInput.max)))
         : "0";
     }
   }
@@ -431,13 +423,6 @@ function setupAudioPlayer() {
   seekInput?.addEventListener("input", () => {
     if (!Number.isFinite(audio.duration) || audio.duration <= 0) return;
     audio.currentTime = (Number(seekInput.value) / Number(seekInput.max)) * audio.duration;
-    if (miniSeekInput) miniSeekInput.value = seekInput.value;
-  });
-
-  miniSeekInput?.addEventListener("input", () => {
-    if (!Number.isFinite(audio.duration) || audio.duration <= 0) return;
-    audio.currentTime = (Number(miniSeekInput.value) / Number(miniSeekInput.max)) * audio.duration;
-    if (seekInput) seekInput.value = miniSeekInput.value;
   });
 
   document.addEventListener("click", (event) => {
