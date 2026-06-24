@@ -1572,16 +1572,21 @@ section[id] {
   right: 0;
   bottom: 0;
   display: grid;
-  gap: 12px;
-  width: min(430px, calc(100vw - 32px));
-  max-height: calc(100svh - 44px);
-  padding: 14px;
+  grid-template-columns: minmax(300px, 0.92fr) minmax(286px, 1.08fr);
+  grid-template-areas:
+    "head list"
+    "main list";
+  align-items: stretch;
+  gap: 16px;
+  width: min(760px, calc(100vw - 44px));
+  height: min(438px, calc(100svh - 44px));
+  padding: 16px;
   overflow: hidden;
   color: var(--white);
   background:
-    radial-gradient(circle at 18% 8%, rgba(200, 135, 67, 0.24), transparent 34%),
-    radial-gradient(circle at 86% 18%, rgba(251, 247, 239, 0.1), transparent 28%),
-    linear-gradient(150deg, rgba(21, 51, 39, 0.98), rgba(42, 28, 20, 0.98) 58%, rgba(93, 45, 33, 0.98));
+    radial-gradient(circle at 12% 16%, rgba(244, 193, 110, 0.18), transparent 36%),
+    radial-gradient(circle at 84% 12%, rgba(251, 247, 239, 0.12), transparent 30%),
+    linear-gradient(130deg, rgba(21, 51, 39, 0.98), rgba(36, 32, 24, 0.98) 48%, rgba(93, 45, 33, 0.98));
   border: 1px solid rgba(244, 193, 110, 0.22);
   border-radius: 8px;
   box-shadow: 0 24px 70px rgba(24, 19, 15, 0.36);
@@ -1612,12 +1617,14 @@ section[id] {
 }
 
 .audio-player__head {
+  grid-area: head;
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
   gap: 12px;
   min-width: 0;
-  padding: 2px 2px 0;
+  align-self: start;
+  padding: 2px 4px 0;
 }
 
 .audio-player__track {
@@ -1628,7 +1635,7 @@ section[id] {
 
 .audio-player__head span {
   width: fit-content;
-  padding: 5px 8px;
+  padding: 6px 9px;
   color: var(--gold);
   background: rgba(200, 135, 67, 0.12);
   border: 1px solid rgba(200, 135, 67, 0.22);
@@ -1643,20 +1650,23 @@ section[id] {
   display: -webkit-box;
   overflow: hidden;
   color: var(--white);
-  font-size: 1.08rem;
-  line-height: 1.22;
+  font-size: 1.2rem;
+  line-height: 1.18;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
 }
 
 .audio-player__main {
+  grid-area: main;
   display: grid;
-  gap: 13px;
-  padding: 14px;
+  align-content: center;
+  gap: 15px;
+  min-height: 0;
+  padding: 18px;
   background:
-    radial-gradient(circle at 16% 18%, rgba(244, 193, 110, 0.16), transparent 42%),
-    rgba(255, 255, 255, 0.075);
-  border: 1px solid rgba(255, 255, 255, 0.11);
+    radial-gradient(circle at 50% 14%, rgba(244, 193, 110, 0.2), transparent 42%),
+    linear-gradient(180deg, rgba(251, 247, 239, 0.095), rgba(12, 10, 8, 0.12));
+  border: 1px solid rgba(244, 193, 110, 0.16);
   border-radius: 8px;
 }
 
@@ -1693,53 +1703,54 @@ section[id] {
 
 .audio-player__control-row {
   display: grid;
-  grid-template-columns: 58px minmax(0, 1fr);
-  align-items: center;
-  gap: 14px;
+  justify-items: center;
+  gap: 16px;
 }
 
 .audio-player__steam {
   position: relative;
   display: grid;
-  width: 58px;
-  height: 58px;
+  width: 104px;
+  height: 104px;
   place-items: center;
   color: var(--gold);
   background:
     radial-gradient(circle, rgba(251, 247, 239, 0.12), rgba(200, 135, 67, 0.08));
-  border: 1px solid rgba(244, 193, 110, 0.24);
+  border: 1px solid rgba(244, 193, 110, 0.3);
   border-radius: 50%;
 }
 
 .audio-player__steam::after {
   position: absolute;
-  inset: 7px;
+  inset: 13px;
   content: "";
   border: 1px solid rgba(244, 193, 110, 0.22);
   border-radius: inherit;
 }
 
 .audio-player.is-playing .audio-player__steam {
-  box-shadow: 0 0 0 6px rgba(200, 135, 67, 0.08);
+  box-shadow:
+    0 0 0 7px rgba(200, 135, 67, 0.08),
+    0 22px 44px rgba(12, 10, 8, 0.22);
 }
 
 .audio-player__steam svg {
-  width: 24px;
-  height: 24px;
+  width: 34px;
+  height: 34px;
 }
 
 .audio-player__controls {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 14px;
+  justify-content: center;
+  gap: 16px;
   min-width: 0;
 }
 
 .audio-player__play {
-  width: 66px;
-  height: 66px;
-  flex: 0 0 66px;
+  width: 74px;
+  height: 74px;
+  flex: 0 0 74px;
   color: var(--leaf-2);
   background: var(--gold);
   border-radius: 999px;
@@ -1753,8 +1764,8 @@ section[id] {
 }
 
 .audio-player__play svg {
-  width: 25px;
-  height: 25px;
+  width: 27px;
+  height: 27px;
 }
 
 .audio-player__pause-icon,
@@ -1790,16 +1801,19 @@ section[id] {
 }
 
 .audio-player__progress {
-  padding: 4px 0 0;
+  padding: 0;
 }
 
 .audio-player__list {
+  grid-area: list;
   display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
   gap: 9px;
   min-height: 0;
-  padding: 12px;
-  background: rgba(255, 255, 255, 0.055);
-  border: 1px solid rgba(255, 255, 255, 0.09);
+  padding: 14px;
+  background:
+    linear-gradient(180deg, rgba(12, 10, 8, 0.14), rgba(255, 255, 255, 0.055));
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 8px;
 }
 
@@ -1937,8 +1951,9 @@ section[id] {
 .audio-player__playlist {
   display: grid;
   gap: 7px;
-  max-height: 232px;
-  padding: 1px 6px 1px 1px;
+  min-height: 0;
+  max-height: none;
+  padding: 1px 7px 1px 1px;
   overflow-y: auto;
   overscroll-behavior: contain;
   scrollbar-color: rgba(200, 135, 67, 0.86) rgba(255, 255, 255, 0.08);
@@ -1965,8 +1980,8 @@ section[id] {
   align-items: center;
   gap: 10px;
   width: 100%;
-  min-height: 48px;
-  padding: 8px 11px 8px 8px;
+  min-height: 50px;
+  padding: 8px 12px 8px 8px;
   color: rgba(255, 255, 255, 0.9);
   text-align: left;
   background: rgba(255, 255, 255, 0.08);
@@ -2541,6 +2556,12 @@ section[id] {
     right: 0;
     left: 0;
     width: 100%;
+    height: auto;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "head"
+      "main"
+      "list";
     max-height: calc(100svh - 28px);
     padding: 12px;
     overflow-y: auto;
@@ -2552,17 +2573,18 @@ section[id] {
   }
 
   .audio-player__control-row {
-    grid-template-columns: 50px minmax(0, 1fr);
-    gap: 10px;
+    grid-template-columns: 1fr;
+    gap: 12px;
   }
 
   .audio-player__steam {
-    width: 50px;
-    height: 50px;
+    width: 76px;
+    height: 76px;
   }
 
   .audio-player__controls {
-    gap: 9px;
+    justify-content: center;
+    gap: 12px;
   }
 
   .audio-player__icon {
@@ -2571,9 +2593,9 @@ section[id] {
   }
 
   .audio-player__play {
-    width: 62px;
-    height: 62px;
-    flex-basis: 62px;
+    width: 64px;
+    height: 64px;
+    flex-basis: 64px;
   }
 
   .audio-player__playlist {
