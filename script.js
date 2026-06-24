@@ -510,6 +510,56 @@ function setupRevealAnimations() {
   revealItems.forEach((element) => observer.observe(element));
 }
 
+function setupCookieConsent() {
+  const banner = document.querySelector("[data-cookie-banner]");
+  if (!banner) return;
+
+  const consentKey = "cookie_consent";
+  const savedConsent = getStoredConsent() || getCookie(consentKey);
+
+  function getStoredConsent() {
+    try {
+      return localStorage.getItem(consentKey);
+    } catch {
+      return null;
+    }
+  }
+
+  function getCookie(name) {
+    return document.cookie
+      .split("; ")
+      .find((row) => row.startsWith(`${name}=`))
+      ?.split("=")[1];
+  }
+
+  function saveConsent(value) {
+    const maxAge = 60 * 60 * 24 * 365;
+    try {
+      localStorage.setItem(consentKey, value);
+    } catch {
+      // Cookie still stores the choice when localStorage is unavailable.
+    }
+    document.cookie = `${consentKey}=${value}; path=/; max-age=${maxAge}; SameSite=Lax`;
+    banner.classList.remove("is-visible");
+    banner.setAttribute("hidden", "");
+  }
+
+  if (savedConsent) {
+    banner.setAttribute("hidden", "");
+    return;
+  }
+
+  banner.removeAttribute("hidden");
+  requestAnimationFrame(() => {
+    banner.classList.add("is-visible");
+    refreshIcons();
+  });
+
+  banner.querySelector("[data-cookie-accept]")?.addEventListener("click", () => saveConsent("accepted"));
+  banner.querySelector("[data-cookie-necessary]")?.addEventListener("click", () => saveConsent("necessary"));
+}
+
 document.addEventListener("DOMContentLoaded", refreshIcons);
 document.addEventListener("DOMContentLoaded", setupAudioPlayer);
 document.addEventListener("DOMContentLoaded", setupRevealAnimations);
+document.addEventListener("DOMContentLoaded", setupCookieConsent);
