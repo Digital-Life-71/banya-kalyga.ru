@@ -454,6 +454,22 @@ h1 {
   line-height: 1.25;
 }
 
+.map-link {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: rgba(200, 135, 67, 0.78);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.18em;
+}
+
+.map-link:hover {
+  color: var(--gold);
+}
+
+.map-link--inline {
+  color: var(--leaf);
+}
+
 .section {
   padding: 96px 0;
 }
