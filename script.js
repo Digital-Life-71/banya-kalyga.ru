@@ -82,6 +82,162 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
+function setupAudioPlayer() {
+  const audioPlayer = document.querySelector("[data-audio-player]");
+  if (!audioPlayer) return;
+
+  const audio = audioPlayer.querySelector("[data-audio-element]");
+  const panel = audioPlayer.querySelector("[data-audio-panel]");
+  const toggleButton = audioPlayer.querySelector("[data-audio-toggle]");
+  const collapseButton = audioPlayer.querySelector("[data-audio-collapse]");
+  const playButton = audioPlayer.querySelector("[data-audio-play]");
+  const prevButton = audioPlayer.querySelector("[data-audio-prev]");
+  const nextButton = audioPlayer.querySelector("[data-audio-next]");
+  const titleElement = audioPlayer.querySelector("[data-audio-title]");
+  const currentTimeElement = audioPlayer.querySelector("[data-audio-current]");
+  const durationElement = audioPlayer.querySelector("[data-audio-duration]");
+  const seekInput = audioPlayer.querySelector("[data-audio-seek]");
+  const volumeInput = audioPlayer.querySelector("[data-audio-volume]");
+  const trackButtons = [...audioPlayer.querySelectorAll("[data-track-src]")];
+
+  if (!audio || !panel || !toggleButton || !playButton || trackButtons.length === 0) return;
+
+  const tracks = trackButtons.map((button) => ({
+    button,
+    src: button.dataset.trackSrc,
+    title: button.dataset.trackTitle || button.textContent.trim(),
+  }));
+
+  let currentTrack = 0;
+
+  function formatTime(seconds) {
+    if (!Number.isFinite(seconds)) return "0:00";
+    const minutes = Math.floor(seconds / 60);
+    const rest = Math.floor(seconds % 60)
+      .toString()
+      .padStart(2, "0");
+    return `${minutes}:${rest}`;
+  }
+
+  function updateOpenState(isOpen) {
+    audioPlayer.classList.toggle("is-open", isOpen);
+    panel.setAttribute("aria-hidden", String(!isOpen));
+    toggleButton.setAttribute("aria-expanded", String(isOpen));
+  }
+
+  function updateActiveTrack() {
+    const track = tracks[currentTrack];
+    if (titleElement) titleElement.textContent = track.title;
+    trackButtons.forEach((button, index) => {
+      button.classList.toggle("is-active", index === currentTrack);
+    });
+  }
+
+  function updatePlayState() {
+    const isPlaying = !audio.paused && !audio.ended;
+    audioPlayer.classList.toggle("is-playing", isPlaying);
+    playButton.setAttribute("aria-label", isPlaying ? "Поставить на паузу" : "Воспроизвести");
+  }
+
+  function updateProgress() {
+    if (currentTimeElement) currentTimeElement.textContent = formatTime(audio.currentTime);
+    if (durationElement) durationElement.textContent = formatTime(audio.duration);
+
+    if (seekInput && Number.isFinite(audio.duration) && audio.duration > 0) {
+      seekInput.value = String(Math.round((audio.currentTime / audio.duration) * Number(seekInput.max)));
+    }
+  }
+
+  function loadTrack(index) {
+    currentTrack = (index + tracks.length) % tracks.length;
+    const track = tracks[currentTrack];
+    audio.src = track.src;
+    audio.load();
+    updateActiveTrack();
+    updateProgress();
+  }
+
+  function playCurrent() {
+    if (!audio.src) loadTrack(currentTrack);
+
+    audio
+      .play()
+      .then(updatePlayState)
+      .catch(() => {
+        audioPlayer.classList.remove("is-playing");
+      });
+  }
+
+  function playTrack(index) {
+    loadTrack(index);
+    playCurrent();
+  }
+
+  function pauseCurrent() {
+    audio.pause();
+    updatePlayState();
+  }
+
+  function playNext() {
+    playTrack(currentTrack + 1);
+  }
+
+  function playPrev() {
+    playTrack(currentTrack - 1);
+  }
+
+  if (volumeInput) {
+    audio.volume = Number(volumeInput.value);
+    volumeInput.addEventListener("input", () => {
+      audio.volume = Number(volumeInput.value);
+    });
+  }
+
+  toggleButton.addEventListener("click", () => {
+    updateOpenState(true);
+    if (audio.paused) playCurrent();
+  });
+
+  collapseButton?.addEventListener("click", () => {
+    updateOpenState(false);
+  });
+
+  playButton.addEventListener("click", () => {
+    updateOpenState(true);
+    if (audio.paused) {
+      playCurrent();
+    } else {
+      pauseCurrent();
+    }
+  });
+
+  prevButton?.addEventListener("click", playPrev);
+  nextButton?.addEventListener("click", playNext);
+
+  trackButtons.forEach((button, index) => {
+    button.addEventListener("click", () => playTrack(index));
+  });
+
+  seekInput?.addEventListener("input", () => {
+    if (!Number.isFinite(audio.duration) || audio.duration <= 0) return;
+    audio.currentTime = (Number(seekInput.value) / Number(seekInput.max)) * audio.duration;
+  });
+
+  audio.addEventListener("play", updatePlayState);
+  audio.addEventListener("pause", updatePlayState);
+  audio.addEventListener("ended", playNext);
+  audio.addEventListener("timeupdate", updateProgress);
+  audio.addEventListener("loadedmetadata", updateProgress);
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") updateOpenState(false);
+  });
+
+  loadTrack(0);
+  updateOpenState(false);
+  updatePlayState();
+}
+
 function setupRevealAnimations() {
   const revealSelectors = [
     ".hero .eyebrow",
@@ -139,4 +295,5 @@ function setupRevealAnimations() {
 }
 
 document.addEventListener("DOMContentLoaded", refreshIcons);
+document.addEventListener("DOMContentLoaded", setupAudioPlayer);
 document.addEventListener("DOMContentLoaded", setupRevealAnimations);
