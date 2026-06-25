@@ -3165,8 +3165,10 @@ section[id] {
   }
 
   .hero-media-actions {
+    flex-direction: row;
+    justify-content: flex-end;
     gap: 10px;
-    width: 124px;
+    width: min(100%, 258px);
     margin-bottom: 24px;
   }
 
