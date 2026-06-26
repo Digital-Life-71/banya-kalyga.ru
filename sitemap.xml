@@ -5,7 +5,7 @@
 >
   <url>
     <loc>https://banya-kalyga.ru/</loc>
-    <lastmod>2026-06-25</lastmod>
+    <lastmod>2026-06-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
@@ -55,6 +55,56 @@
     <image:image>
       <image:loc>https://banya-kalyga.ru/assets/images/cold-tub.jpg</image:loc>
       <image:caption>Холодная купель после русской парной</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://banya-kalyga.ru/banya-s-chanom.html</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://banya-kalyga.ru/assets/images/hot-tub.jpg</image:loc>
+      <image:caption>Баня с сибирским чаном в Калуге</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://banya-kalyga.ru/banya-s-kupelyu.html</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://banya-kalyga.ru/assets/images/cold-tub.jpg</image:loc>
+      <image:caption>Баня с купелью в Калуге</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://banya-kalyga.ru/parenie-s-masterom.html</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://banya-kalyga.ru/assets/images/master-steam.jpg</image:loc>
+      <image:caption>Парение с мастером в русской бане</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://banya-kalyga.ru/banya-dlya-dnya-rozhdeniya.html</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+    <image:image>
+      <image:loc>https://banya-kalyga.ru/assets/images/courtyard.jpg</image:loc>
+      <image:caption>Баня для дня рождения и отдыха компанией</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://banya-kalyga.ru/banya-po-chernomu.html</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+    <image:image>
+      <image:loc>https://banya-kalyga.ru/assets/images/black-bath.jpg</image:loc>
+      <image:caption>Баня по-черному в Калуге</image:caption>
     </image:image>
   </url>
   <url>
