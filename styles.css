@@ -1175,7 +1175,7 @@ section[id] {
 }
 
 .section--contact {
-  padding-bottom: clamp(76px, 9vw, 124px);
+  padding-bottom: clamp(38px, 4.5vw, 62px);
   color: var(--white);
   background: var(--leaf-2);
 }
@@ -3089,7 +3089,7 @@ section[id] {
   }
 
   .section--contact {
-    padding-bottom: 96px;
+    padding-bottom: 64px;
   }
 
   section[id] {
@@ -3438,7 +3438,7 @@ section[id] {
   }
 
   .section--contact {
-    padding-bottom: 86px;
+    padding-bottom: 58px;
   }
 
   .section-copy h2,
