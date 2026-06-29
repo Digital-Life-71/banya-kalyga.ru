@@ -1175,7 +1175,7 @@ section[id] {
 }
 
 .section--contact {
-  padding-bottom: 0;
+  padding-bottom: clamp(76px, 9vw, 124px);
   color: var(--white);
   background: var(--leaf-2);
 }
@@ -3088,6 +3088,10 @@ section[id] {
     padding: 74px 0;
   }
 
+  .section--contact {
+    padding-bottom: 96px;
+  }
+
   section[id] {
     scroll-margin-top: 92px;
   }
@@ -3431,6 +3435,10 @@ section[id] {
 
   .section {
     padding: 58px 0;
+  }
+
+  .section--contact {
+    padding-bottom: 86px;
   }
 
   .section-copy h2,
