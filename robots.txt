@@ -1,4 +1,5 @@
 User-agent: *
+Disallow: /certificate-generator/
 Allow: /
 
 Sitemap: https://banya-kalyga.ru/sitemap.xml
