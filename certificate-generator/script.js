@@ -144,14 +144,10 @@
     fontsReady.then(() => {
       renderCertificate();
 
-      const recipient = (recipientInput.value.trim() || "sertifikat")
-        .replace(/[^\p{L}\p{N}]+/gu, "-")
-        .replace(/^-+|-+$/g, "")
-        .toLowerCase();
       const link = document.createElement("a");
 
       link.href = canvas.toDataURL("image/png");
-      link.download = `podarochnyi-sertifikat-${recipient || "banya"}.png`;
+      link.download = "podarochnyi-sertifikat-sertifikat.png";
       link.click();
     });
   };
