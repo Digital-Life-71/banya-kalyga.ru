@@ -9,6 +9,7 @@
   --green: #6f7c45;
   --danger: #9b3227;
   --line: rgba(48, 38, 29, 0.18);
+  --certificate-script-font: "Monotype Corsiva", "Segoe Script", "Palatino Linotype", Georgia, serif;
   color-scheme: light;
 }
 
@@ -254,27 +255,29 @@ button:active {
 .certificate-text {
   position: absolute;
   z-index: 1;
-  color: #4b3f32;
-  font-family: Georgia, "Times New Roman", serif;
+  color: #5b4632;
+  font-family: var(--certificate-script-font);
   font-weight: 500;
   line-height: 1;
   white-space: nowrap;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.28);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.34), 0 2px 3px rgba(79, 54, 32, 0.08);
   pointer-events: none;
+  transform: translateY(-82%) scaleX(var(--fit-scale, 1));
+  transform-origin: left center;
 }
 
 .certificate-name {
   left: 10.4%;
-  top: 51.4%;
-  width: 42%;
-  font-size: clamp(18px, 3.2vw, 48px);
+  top: 54.1%;
+  width: 41.8%;
+  font-size: clamp(22px, 4vw, 61px);
 }
 
 .certificate-amount {
   left: 9.7%;
-  top: 66.2%;
-  width: 38%;
-  font-size: clamp(17px, 2.9vw, 44px);
+  top: 68.4%;
+  width: 38.2%;
+  font-size: clamp(21px, 3.5vw, 54px);
 }
 
 @media (max-width: 920px) {

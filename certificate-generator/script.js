@@ -19,21 +19,22 @@
   const downloadButton = document.querySelector("#downloadButton");
   const printButton = document.querySelector("#printButton");
   const clearButton = document.querySelector("#clearButton");
+  const CERTIFICATE_FONT = '"Monotype Corsiva", "Segoe Script", "Palatino Linotype", Georgia, serif';
 
   const textLayout = {
     recipient: {
       x: 155,
-      y: 573,
-      maxWidth: 640,
-      fontSize: 54,
-      minSize: 30,
+      y: 570,
+      maxWidth: 625,
+      fontSize: 70,
+      minSize: 38,
     },
     amount: {
       x: 145,
-      y: 728,
-      maxWidth: 565,
-      fontSize: 49,
-      minSize: 28,
+      y: 721,
+      maxWidth: 570,
+      fontSize: 62,
+      minSize: 34,
     },
   };
 
@@ -95,32 +96,31 @@
 
   const fitPreviewText = (element) => {
     const width = element.getBoundingClientRect().width;
-    element.style.transform = "scaleX(1)";
+    element.style.setProperty("--fit-scale", "1");
 
     if (!width || element.scrollWidth <= width) {
       return;
     }
 
     const scale = Math.max(0.72, width / element.scrollWidth);
-    element.style.transformOrigin = "left center";
-    element.style.transform = `scaleX(${scale})`;
+    element.style.setProperty("--fit-scale", scale);
   };
 
   const setCanvasFont = (ctx, layout, text) => {
     let fontSize = layout.fontSize;
 
     do {
-      ctx.font = `${fontSize}px Georgia, "Times New Roman", serif`;
+      ctx.font = `${fontSize}px ${CERTIFICATE_FONT}`;
       fontSize -= 2;
     } while (ctx.measureText(text).width > layout.maxWidth && fontSize >= layout.minSize);
   };
 
   const drawText = (ctx, text, layout) => {
     ctx.save();
-    ctx.fillStyle = "#4b3f32";
+    ctx.fillStyle = "#5b4632";
     ctx.textBaseline = "alphabetic";
-    ctx.shadowColor = "rgba(255, 255, 255, 0.3)";
-    ctx.shadowBlur = 0;
+    ctx.shadowColor = "rgba(255, 255, 255, 0.34)";
+    ctx.shadowBlur = 1;
     ctx.shadowOffsetY = 1;
     setCanvasFont(ctx, layout, text);
     ctx.fillText(text, layout.x, layout.y, layout.maxWidth);
@@ -139,17 +139,21 @@
   };
 
   const downloadCertificate = () => {
-    renderCertificate();
+    const fontsReady = document.fonts?.ready || Promise.resolve();
 
-    const recipient = (recipientInput.value.trim() || "sertifikat")
-      .replace(/[^\p{L}\p{N}]+/gu, "-")
-      .replace(/^-+|-+$/g, "")
-      .toLowerCase();
-    const link = document.createElement("a");
+    fontsReady.then(() => {
+      renderCertificate();
 
-    link.href = canvas.toDataURL("image/png");
-    link.download = `podarochnyi-sertifikat-${recipient || "banya"}.png`;
-    link.click();
+      const recipient = (recipientInput.value.trim() || "sertifikat")
+        .replace(/[^\p{L}\p{N}]+/gu, "-")
+        .replace(/^-+|-+$/g, "")
+        .toLowerCase();
+      const link = document.createElement("a");
+
+      link.href = canvas.toDataURL("image/png");
+      link.download = `podarochnyi-sertifikat-${recipient || "banya"}.png`;
+      link.click();
+    });
   };
 
   authForm.addEventListener("submit", async (event) => {
